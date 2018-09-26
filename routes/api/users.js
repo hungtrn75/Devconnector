@@ -67,26 +67,28 @@ router.post("/login", (req, res) => {
     return res.status(400).send(errors);
   }
   //Find by email
-  User.findOne({ email }).then(user => {
-    //Check user
-    if (!user) {
-      errors.email = "Email is invalid.";
-      return res.status(404).json(errors);
-    }
-    //compare password
-    bcrypt.compare(password, user.password).then(isMatch => {
-      if (isMatch) {
-        const token = user.genarateAuthToken();
-        res.send({
-          success: true,
-          token: `Bearer ${token}`
-        });
-      } else {
-        errors.password = "Password incorrect.";
-        return res.status(404).json(errors);
+  User.findOne({ email })
+    .then(user => {
+      //Check user
+      if (!user) {
+        errors.email = "Email is invalid.";
+        return res.status(404).send(errors);
       }
-    });
-  });
+      //compare password
+      bcrypt.compare(password, user.password).then(isMatch => {
+        if (isMatch) {
+          const token = user.genarateAuthToken();
+          res.send({
+            success: true,
+            token: `Bearer ${token}`
+          });
+        } else {
+          errors.password = "Password incorrect.";
+          return res.status(404).send(errors);
+        }
+      });
+    })
+    .catch(err => res.status(404).send({ errors: "Login failed" }));
 });
 
 //@route  GET api/users/current

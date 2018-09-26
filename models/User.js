@@ -39,6 +39,12 @@ UserSchema.pre("save", function(next) {
   } else next();
 });
 
+UserSchema.methods.toJSON = function() {
+  let user = this.toObject();
+  delete user.password;
+  return user;
+};
+
 UserSchema.methods.genarateAuthToken = function() {
   let user = this;
   let access = "auth";
