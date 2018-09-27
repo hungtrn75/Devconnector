@@ -1,1 +1,1 @@
-export const REGISTER_ERROR = "REGISTER_ERROR";
+export const GET_ERRORS = "GET_ERRORS";

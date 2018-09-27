@@ -11,7 +11,7 @@ export const registerUser = (userData, history) => dispatch => {
     .then(res => history.push("/login"))
     .catch(err =>
       dispatch({
-        type: ErrorTypes.REGISTER_ERROR,
+        type: ErrorTypes.GET_ERRORS,
         payload: err.response.data
       })
     );
@@ -33,7 +33,7 @@ export const loginUser = userData => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: ErrorTypes.REGISTER_ERROR,
+        type: ErrorTypes.GET_ERRORS,
         payload: err.response.data
       });
     });

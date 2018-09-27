@@ -4,8 +4,9 @@ import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import { Provider } from "react-redux";
-
-import store from "./store";
+import store from "./helpers/store";
+import isAuthenticated from "./helpers/isAuthenticated";
+isAuthenticated();
 
 ReactDOM.render(
   <Provider store={store}>

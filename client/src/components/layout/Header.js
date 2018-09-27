@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import PropType from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/index";
+import { clearCurrentProfile } from "../../actions/profileActions";
 
 class Header extends Component {
-  onLogout = () => {
+  onLogout = e => {
+    e.preventDefault();
     this.props.logoutUser();
+    this.props.clearCurrentProfile();
   };
 
   render() {
@@ -37,17 +40,20 @@ class Header extends Component {
             Dashboard
           </Link>
         </li>
-        <li className="nav-item" onClick={this.onLogout}>
-          <a className="nav-link" href="">
+        <li className="nav-item">
+          <Link className="nav-link" to="/profile">
             <img
               className="rounded-circle"
               style={{ width: "25px", marginRight: "5px" }}
               src={user.avatar}
               alt=""
               title="You must have a Gravatar connected to your email to display an image"
-            />{" "}
-            Logout
-          </a>
+            />
+            {user.name}
+          </Link>
+        </li>
+        <li className="nav-item" onClick={this.onLogout}>
+          <a className="nav-link">Logout</a>
         </li>
       </ul>
     );
@@ -97,5 +103,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { logoutUser, clearCurrentProfile }
 )(Header);
