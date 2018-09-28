@@ -37,11 +37,6 @@ class Header extends Component {
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/dashboard">
-            Dashboard
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/profile">
             <img
               className="rounded-circle"
               style={{ width: "25px", marginRight: "5px" }}
@@ -77,8 +72,7 @@ class Header extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/post-feed">
-                  {" "}
+                <Link className="nav-link" to="/profiles">
                   Developers
                 </Link>
               </li>
@@ -98,7 +92,8 @@ Header.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  profile: state.profile
 });
 
 export default connect(

@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 class Landing extends Component {
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/post-feed");
+      this.props.history.push("/dashboard");
     }
   }
   render() {

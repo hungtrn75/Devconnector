@@ -43,6 +43,44 @@ router.get(
   }
 );
 
+//@route  GET api/profile
+//@desc   Get profile by handle
+//@access Public
+router.get("/handle/:handle", (req, res) => {
+  const errors = {};
+  Profile.findOne({ handle: req.params.handle })
+    .populate("user", ["name", "avatar"])
+    .then(profile => {
+      if (!profile) {
+        errors.profile = "No profile for this user.";
+        return res.status(404).send(errors);
+      }
+      return res.send(profile);
+    })
+    .catch(err => res.status(404).send(err));
+});
+
+//@route  GET api/profile/all
+//@desc   Get all profile
+//@access Private
+router.get(
+  "/all",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+    Profile.find()
+      .populate("user", ["name", "avatar"])
+      .then(profile => {
+        if (!profile) {
+          errors.profile = "No profile to fetch.";
+          return res.status(404).send(errors);
+        }
+        return res.send(profile);
+      })
+      .catch(err => res.status(404).send(err));
+  }
+);
+
 //@route  Post api/profile
 //@desc   Post profile of current user
 //@access Private

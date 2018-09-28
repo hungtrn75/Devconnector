@@ -74,7 +74,7 @@ class Register extends Component {
                 />
                 <TextFieldGroup
                   type="password"
-                  placeholder="Name"
+                  placeholder="Password"
                   name="password"
                   value={this.state.password}
                   onChange={this.onChange}

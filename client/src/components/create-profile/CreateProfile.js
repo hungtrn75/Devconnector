@@ -32,7 +32,7 @@ class CreateProfile extends Component {
   }
 
   componentDidMount() {
-    if (isEmpty(this.props.profile.profile)) {
+    if (!isEmpty(this.props.profile.profile)) {
       this.props.history.push("/edit-profile");
     }
   }
