@@ -1,10 +1,7 @@
 import {
   GET_PROFILE,
-  GET_PROFILES,
   PROFILE_LOADING,
-  PROFILE_NOT_FOUND,
-  CLEAR_CURRENT_PROFILE,
-  GET_PROFILE_ERRORS
+  CLEAR_CURRENT_PROFILE
 } from "../constants/ActionTypes";
 
 const initialState = {

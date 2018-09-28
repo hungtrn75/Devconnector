@@ -31,7 +31,7 @@ class Header extends Component {
     const authLink = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/feed">
+          <Link className="nav-link" to="/post-feed">
             Post Feed
           </Link>
         </li>
@@ -77,7 +77,7 @@ class Header extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/profile">
+                <Link className="nav-link" to="/post-feed">
                   {" "}
                   Developers
                 </Link>

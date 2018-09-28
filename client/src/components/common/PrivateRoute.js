@@ -23,7 +23,8 @@ const mapStateToProps = state => ({
 });
 
 PrivateRoute.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  redirectTo: PropTypes.string
 };
 
 export default connect(

@@ -11,6 +11,9 @@ import "./App.css";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/common/PrivateRoute";
 import CreateProfile from "./components/create-profile/CreateProfile";
+import EditProfile from "./components/edit-profile/EditProfile";
+import AddEducation from "./components/add-credentials/AddEducation";
+import AddExperience from "./components/add-credentials/AddExperience";
 
 class App extends Component {
   render() {
@@ -33,6 +36,24 @@ class App extends Component {
                 exact
                 path="/create-profile"
                 component={CreateProfile}
+                redirectTo="/login"
+              />
+              <PrivateRoute
+                exact
+                path="/edit-profile"
+                component={EditProfile}
+                redirectTo="/login"
+              />
+              <PrivateRoute
+                exact
+                path="/add-education"
+                component={AddEducation}
+                redirectTo="/login"
+              />
+              <PrivateRoute
+                exact
+                path="/add-experience"
+                component={AddExperience}
                 redirectTo="/login"
               />
             </Switch>
