@@ -17,6 +17,11 @@ class Profile extends Component {
       this.props.getProfileByHandle(this.props.match.params.handle);
     }
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.profile.profile === null && this.props.profile.loading) {
+      this.props.history.push("/not-found");
+    }
+  }
   render() {
     const { profile, loading } = this.props.profile;
     let profileContent;
@@ -28,9 +33,21 @@ class Profile extends Component {
           <div className="col-md-12">
             <div className="row">
               <div className="col-6">
-                <Link to="/profiles" className="btn btn-light mb-3 float-left">
-                  Back To Profiles
-                </Link>
+                {profile.user._id === this.props.auth.user.id ? (
+                  <Link
+                    to="/edit-profile"
+                    className="btn btn-light mb-3 float-left"
+                  >
+                    Edit profile
+                  </Link>
+                ) : (
+                  <Link
+                    to="/profiles"
+                    className="btn btn-light mb-3 float-left"
+                  >
+                    Back To Profiles
+                  </Link>
+                )}
               </div>
               <div className="col-6" />
             </div>
@@ -40,7 +57,9 @@ class Profile extends Component {
               education={profile.education}
               experience={profile.experience}
             />
-            <ProfileGithub />
+            {profile.githubID ? (
+              <ProfileGithub username={profile.githubID} />
+            ) : null}
           </div>
         </div>
       );
@@ -50,7 +69,8 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile
+  profile: state.profile,
+  auth: state.auth
 });
 
 Profile.propTypes = {

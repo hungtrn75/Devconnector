@@ -10,6 +10,14 @@ const PostSchema = new Schema({
     type: String,
     required: true
   },
+  name: {
+    type: String,
+    required: true
+  },
+  avatar: {
+    type: String,
+    required: true
+  },
   likes: [
     {
       user: {

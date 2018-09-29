@@ -16,6 +16,9 @@ import AddEducation from "./components/add-credentials/AddEducation";
 import AddExperience from "./components/add-credentials/AddExperience";
 import Profile from "./components/profile/Profile";
 import Profiles from "./components/profiles/Profiles";
+import NotFound from "./components/not-found/NotFound";
+import Posts from "./components/posts/Posts";
+import Post from "./components/post/Post";
 
 class App extends Component {
   render() {
@@ -65,7 +68,20 @@ class App extends Component {
                 component={Profiles}
                 redirectTo="/login"
               />
+              <PrivateRoute
+                exact
+                path="/feed"
+                component={Posts}
+                redirectTo="/login"
+              />
+              <PrivateRoute
+                exact
+                path="/posts/:id"
+                component={Post}
+                redirectTo="/login"
+              />
             </Switch>
+            <Route exact path="/not-found" component={NotFound} />
           </div>
           <Footer />
         </div>

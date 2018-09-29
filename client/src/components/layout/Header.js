@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import PropType from "prop-types";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/index";
 import { clearCurrentProfile } from "../../actions/profileActions";
@@ -14,6 +14,7 @@ class Header extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const { profile } = this.props.profile;
     const guestLink = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
@@ -31,12 +32,20 @@ class Header extends Component {
     const authLink = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/post-feed">
+          <Link className="nav-link" to="/feed">
             Post Feed
           </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/dashboard">
+            Dashboard
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className="nav-link"
+            to={profile ? `/profile/${profile.handle}` : "/profiles"}
+          >
             <img
               className="rounded-circle"
               style={{ width: "25px", marginRight: "5px" }}
@@ -87,8 +96,9 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  auth: PropType.object.isRequired,
-  logoutUser: PropType.func.isRequired
+  auth: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
