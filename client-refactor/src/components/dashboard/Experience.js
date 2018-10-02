@@ -3,10 +3,11 @@ import Moment from "react-moment";
 import { connect } from "react-redux";
 import { deleteExperience } from "../../actions/profileActions";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 
 class Experience extends Component {
   onDelete = id => {
-    this.props.deleteExperience(id);
+    this.props.deleteExperience(id, this.props.history);
   };
   render() {
     const experience = this.props.experience.map(exp => (
@@ -53,4 +54,4 @@ Experience.propTypes = {
 export default connect(
   null,
   { deleteExperience }
-)(Experience);
+)(withRouter(Experience));

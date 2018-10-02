@@ -7,7 +7,7 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client-install": "npm install --prefix client",
-    "client": "npm start --prefix client",
+    "client": "npm start --prefix client-refactor",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Hung Tran",
@@ -29,6 +29,7 @@
     "validator": "^10.7.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.4",
+    "redux-devtools-extension": "^2.13.5"
   }
 }

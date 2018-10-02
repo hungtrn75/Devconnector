@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/index";
-import { clearCurrentProfile } from "../../actions/profileActions";
 
 class Header extends Component {
   onLogout = e => {
     e.preventDefault();
     this.props.logoutUser();
-    this.props.clearCurrentProfile();
   };
 
   render() {
@@ -108,5 +106,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser, clearCurrentProfile }
+  { logoutUser }
 )(Header);

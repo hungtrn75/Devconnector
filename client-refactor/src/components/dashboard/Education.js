@@ -29,7 +29,7 @@ class Education extends Component {
     ));
     return (
       <React.Fragment>
-        <h4 className="mb-2">Experience Credentials</h4>
+        <h4 className="mb-2">Education Credentials</h4>
         <table className="table">
           <thead>
             <tr>

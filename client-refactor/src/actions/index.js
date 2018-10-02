@@ -1,43 +1,17 @@
 import * as ActionTypes from "../constants/ActionTypes";
-import * as ErrorTypes from "../constants/ErrorTypes";
-import axios from "axios";
-import jwt_decode from "jwt-decode";
 import setAuthToken from "../utils/setAuthToken";
 
 //Register user
-export const registerUser = (userData, history) => dispatch => {
-  return axios
-    .post("/api/users/register", userData)
-    .then(res => history.push("/login"))
-    .catch(err =>
-      dispatch({
-        type: ErrorTypes.GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
+export const registerUser = (userData, history) => ({
+  type: ActionTypes.REGISTER_USER,
+  payload: { userData, history }
+});
 
 //Login user - Set User token
-export const loginUser = userData => dispatch => {
-  return axios
-    .post("/api/users/login", userData)
-    .then(res => {
-      const { token } = res.data;
-      //Save to localStorage
-      localStorage.setItem("jwtToken", token);
-      //Set user token
-      setAuthToken(token);
-      //Decode user token
-      const decoded = jwt_decode(token);
-      dispatch(setCurrentUser(decoded));
-    })
-    .catch(err => {
-      dispatch({
-        type: ErrorTypes.GET_ERRORS,
-        payload: err.response.data
-      });
-    });
-};
+export const loginUser = userData => ({
+  type: ActionTypes.LOGIN_USER,
+  payload: userData
+});
 
 //Set current user
 export const setCurrentUser = decoded => {
@@ -55,4 +29,5 @@ export const logoutUser = () => dispatch => {
   setAuthToken(false);
   //Set isAuthenticated to false and remove user
   dispatch(setCurrentUser({}));
+  dispatch({ type: ActionTypes.CLEAR_CURRENT_PROFILE });
 };
