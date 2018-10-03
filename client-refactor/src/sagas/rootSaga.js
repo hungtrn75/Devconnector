@@ -9,7 +9,11 @@ import {
   watchRemoveLike,
   watchDeleteComment
 } from "./PostSagas";
-import { watchRegisterUser, watchLoginUser } from "./AuthSagas";
+import {
+  watchRegisterUser,
+  watchLoginUser,
+  watchLogoutUser
+} from "./AuthSagas";
 import {
   watchGetProfileByHandle,
   watchCreateProfile,
@@ -42,6 +46,7 @@ export default function*() {
     watchAddEducation(),
     watchDeleteExperience(),
     watchDeleteEducation(),
-    watchGetProfiles()
+    watchGetProfiles(),
+    watchLogoutUser()
   ]);
 }

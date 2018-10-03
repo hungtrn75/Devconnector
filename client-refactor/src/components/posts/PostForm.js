@@ -26,6 +26,7 @@ class PostForm extends Component {
   onSubmit = e => {
     e.preventDefault();
     this.props.addPost({ text: this.state.text });
+    this.setState({ text: "" });
   };
   render() {
     return (

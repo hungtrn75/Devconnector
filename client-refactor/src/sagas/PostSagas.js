@@ -16,11 +16,16 @@ import {
 import { GET_ERRORS } from "../constants/ErrorTypes";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { Api } from "./Api";
+import { ADD_ALERT } from "../constants/AlertActions";
 
 function* addPostWorker(action) {
   try {
     const res = yield call(Api.addPostApi, action.payload);
     yield put({ type: ADD_POST, payload: res.data });
+    yield put({
+      type: ADD_ALERT,
+      payload: { text: "Add post successfull", status: "success" }
+    });
   } catch (error) {
     yield put({ type: GET_ERRORS, payload: error.response.data });
   }
@@ -34,6 +39,10 @@ function* addCommentWorker(action) {
       action.payload.commentData
     );
     yield put({ type: GET_POST_API, payload: action.payload.id });
+    yield put({
+      type: ADD_ALERT,
+      payload: { text: "Add comment successfull", status: "success" }
+    });
   } catch (error) {
     yield put({ type: GET_ERRORS, payload: error.response.data });
   }
@@ -60,6 +69,10 @@ function* deletePostWorker(action) {
   try {
     yield call(Api.deletePostApi, action.payload);
     yield put({ type: DELETE_POST, payload: action.payload });
+    yield put({
+      type: ADD_ALERT,
+      payload: { text: "Delete post successfull", status: "success" }
+    });
   } catch (error) {
     yield put({ type: GET_POSTS, payload: null });
   }
@@ -88,6 +101,10 @@ function* deleteCommentWorker(action) {
       action.payload.post_id
     );
     yield put({ type: GET_POST_API, payload: action.payload.post_id });
+    yield put({
+      type: ADD_ALERT,
+      payload: { text: "Delete comment successfull", status: "success" }
+    });
   } catch (error) {
     yield put({ type: GET_ERRORS, payload: error.response.data });
   }

@@ -1,5 +1,5 @@
 import * as ActionTypes from "../constants/ActionTypes";
-import setAuthToken from "../utils/setAuthToken";
+import { REMOVE_ALERT } from "../constants/AlertActions";
 
 //Register user
 export const registerUser = (userData, history) => ({
@@ -22,12 +22,11 @@ export const setCurrentUser = decoded => {
 };
 
 //Logout user
-export const logoutUser = () => dispatch => {
-  //Remove token from localStorage
-  localStorage.removeItem("jwtToken");
-  //Remove auth header for future requests
-  setAuthToken(false);
-  //Set isAuthenticated to false and remove user
-  dispatch(setCurrentUser({}));
-  dispatch({ type: ActionTypes.CLEAR_CURRENT_PROFILE });
-};
+export const logoutUser = () => ({
+  type: ActionTypes.LOGOUT_USER
+});
+
+//Remove Alert
+export const removeAlert = () => ({
+  type: REMOVE_ALERT
+});

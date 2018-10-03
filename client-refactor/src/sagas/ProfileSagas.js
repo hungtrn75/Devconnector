@@ -17,6 +17,7 @@ import {
   GET_PROFILES,
   GET_PROFILES_API
 } from "../constants/ActionTypes";
+import { ADD_ALERT } from "../constants/AlertActions";
 
 function* getCurrentProfile() {
   try {
@@ -64,6 +65,10 @@ function* createProfile(action) {
     const res = yield call(Api.createProfileApi, action.payload.profileData);
     action.payload.history.push("/dashboard");
     yield put({ type: GET_PROFILE, payload: res.data });
+    yield put({
+      type: ADD_ALERT,
+      payload: { text: "Update profile successfull", status: "success" }
+    });
   } catch (error) {
     yield put({ type: GET_ERRORS, payload: error.response.data });
   }
@@ -90,6 +95,10 @@ export function* watchDeleteAccount() {
 function* addExperience(action) {
   try {
     yield call(Api.addExperienceApi, action.payload.expData);
+    yield put({
+      type: ADD_ALERT,
+      payload: { text: "Add experience successfull", status: "success" }
+    });
     action.payload.history.push("/dashboard");
   } catch (error) {
     yield put({ type: GET_ERRORS, payload: error.response.data });
@@ -103,6 +112,10 @@ export function* watchAddExperience() {
 function* addEducation(action) {
   try {
     yield call(Api.addEducationApi, action.payload.eduData);
+    yield put({
+      type: ADD_ALERT,
+      payload: { text: "Add education successfull", status: "success" }
+    });
     action.payload.history.push("/dashboard");
   } catch (error) {
     yield put({ type: GET_ERRORS, payload: error.response.data });
@@ -117,6 +130,10 @@ function* deleteExperience(action) {
   try {
     const res = yield call(Api.deleteExperienceApi, action.payload.id);
     yield put({ type: GET_PROFILE, payload: res.data });
+    yield put({
+      type: ADD_ALERT,
+      payload: { text: "Delete experience successfull", status: "success" }
+    });
     yield call(action.payload.history.push, "/dashboard");
   } catch (error) {
     yield put({ type: GET_ERRORS, payload: error.response.data });
@@ -131,6 +148,10 @@ function* deleteEducation(action) {
   try {
     const res = yield call(Api.deleteEducationApi, action.payload.id);
     yield put({ type: GET_PROFILE, payload: res.data });
+    yield put({
+      type: ADD_ALERT,
+      payload: { text: "Delete education successfull", status: "success" }
+    });
     yield call(action.payload.history.push, "/dashboard");
   } catch (error) {
     yield put({ type: GET_ERRORS, payload: error.response.data });

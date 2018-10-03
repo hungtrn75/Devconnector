@@ -19,7 +19,7 @@ import Profiles from "./components/profiles/Profiles";
 import NotFound from "./components/not-found/NotFound";
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
-import Alert from "./components/alert/Alert";
+import AlertContainer from "./components/alert/AlertContainer";
 
 class App extends Component {
   render() {
@@ -27,7 +27,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
-          <Alert />
+          <AlertContainer />
           <Route exact path="/" component={Landing} />
           <div className="container">
             <Route exact path="/register" component={Register} />
