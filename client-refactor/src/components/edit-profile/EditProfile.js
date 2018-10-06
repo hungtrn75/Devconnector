@@ -34,14 +34,13 @@ class EditProfile extends Component {
     this.props.getCurrentProfile();
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    if (nextProps.errors) {
-      return { errors: nextProps.errors };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps && nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
     }
-    if (nextProps.profile.profile) {
+    if (nextProps && nextProps.profile.profile) {
       const { profile } = nextProps.profile;
-
-      return {
+      this.setState({
         handle: profile.handle,
         company: profile.company,
         website: profile.website,
@@ -55,7 +54,7 @@ class EditProfile extends Component {
         twitter: profile.social.twitter,
         linkedin: profile.social.linkedin,
         facebook: profile.social.facebook
-      };
+      });
     }
   }
 
