@@ -36,7 +36,7 @@ class EditProfile extends Component {
 
   static getDerivedStateFromProps(nextProps) {
     if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+      return { errors: nextProps.errors };
     }
     if (nextProps.profile.profile) {
       const { profile } = nextProps.profile;
