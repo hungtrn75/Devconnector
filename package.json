@@ -8,7 +8,8 @@
     "server": "nodemon server.js",
     "client-install": "npm install --prefix client-refactor",
     "client": "npm start --prefix client-refactor",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client-refactor && npm run build --prefix client-refactor"
   },
   "author": "Hung Tran",
   "license": "MIT",
