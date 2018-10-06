@@ -34,47 +34,28 @@ class EditProfile extends Component {
     this.props.getCurrentProfile();
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
     if (nextProps.profile.profile) {
-      const {
-        handle,
-        company,
-        website,
-        location,
-        status,
-        skills,
-        bio,
-        githubID
-      } = nextProps.profile.profile;
-      const {
-        youtube,
-        instagram,
-        twitter,
-        linkedin,
-        facebook
-      } = nextProps.profile.profile.social;
-      //   console.log(social);
-      //Bring skills array back to CSV
-      const skillsCSV = skills.join(",");
+      const { profile } = nextProps.profile;
 
-      this.setState({
-        handle,
-        company,
-        website,
-        location,
-        status,
-        skills: skillsCSV,
-        bio,
-        githubID,
-        youtube,
-        instagram,
-        twitter,
-        linkedin,
-        facebook
-      });
+      return {
+        handle: profile.handle,
+        company: profile.company,
+        website: profile.website,
+        location: profile.location,
+        status: profile.status,
+        skills: profile.skills.join(","),
+        bio: profile.bio,
+        githubID: profile.githubID,
+        youtube: profile.social.youtube,
+        instagram: profile.social.instagram,
+        twitter: profile.social.twitter,
+        linkedin: profile.social.linkedin,
+        facebook: profile.social.facebook
+      };
     }
   }
 

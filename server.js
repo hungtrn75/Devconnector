@@ -14,7 +14,6 @@ const db = require("./configs/keys").mongoURI;
 const options = {
   useNewUrlParser: true
 };
-console.log(db);
 
 //Connect to MongoDB
 mongoose

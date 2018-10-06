@@ -13,9 +13,10 @@ const User = require("../../models/User");
 //@route  GET api/users/test
 //@desc   Test user route
 //@access Public
-router.get("/test", (req, res) => {
+router.get("/shoes", (req, res) => {
   res.json({
-    msg: "Users works"
+    url: req.originalUrl,
+    querry: req.query
   });
 });
 

@@ -116,7 +116,7 @@ function* addEducation(action) {
       type: ADD_ALERT,
       payload: { text: "Add education successfull", status: "success" }
     });
-    action.payload.history.push("/dashboard");
+	yield call(action.payload.history.push, "/dashboard");
   } catch (error) {
     yield put({ type: GET_ERRORS, payload: error.response.data });
   }
@@ -134,7 +134,6 @@ function* deleteExperience(action) {
       type: ADD_ALERT,
       payload: { text: "Delete experience successfull", status: "success" }
     });
-    yield call(action.payload.history.push, "/dashboard");
   } catch (error) {
     yield put({ type: GET_ERRORS, payload: error.response.data });
   }
@@ -152,7 +151,7 @@ function* deleteEducation(action) {
       type: ADD_ALERT,
       payload: { text: "Delete education successfull", status: "success" }
     });
-    yield call(action.payload.history.push, "/dashboard");
+    
   } catch (error) {
     yield put({ type: GET_ERRORS, payload: error.response.data });
   }

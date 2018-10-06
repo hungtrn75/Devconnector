@@ -1,6 +1,5 @@
-module.exports = {
-  // mongoURI: "mongodb://localhost:27017/devconnectordb",
-  mongoURI:
-    "mongodb://hungtran96:giang2804@ds211143.mlab.com:11143/devconnectordb",
-  secretKey: "huonggiangidol"
-};
+if (process.env.NODE_ENV === "production") {
+  module.exports = require("./keys.prod");
+} else {
+  module.exports = require("./keys.dev");
+}
