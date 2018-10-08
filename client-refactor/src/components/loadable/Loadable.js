@@ -34,7 +34,7 @@ export const EditProfile = Loadable({
   loading: Loading
 });
 export const CreateProfile = Loadable({
-  loader: () => import("../dashboard/Dashboard"),
+  loader: () => import("../create-profile/CreateProfile"),
   loading: Loading
 });
 export const Dashboard = Loadable({
