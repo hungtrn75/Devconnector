@@ -34,13 +34,34 @@ class EditProfile extends Component {
     this.props.getCurrentProfile();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps && nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-    if (nextProps && nextProps.profile.profile) {
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps && nextProps.errors) {
+  //     this.setState({ errors: nextProps.errors });
+  //   }
+  //   if (nextProps && nextProps.profile.profile) {
+  //     const { profile } = nextProps.profile;
+  //     this.setState({
+  //       handle: profile.handle,
+  //       company: profile.company,
+  //       website: profile.website,
+  //       location: profile.location,
+  //       status: profile.status,
+  //       skills: profile.skills.join(","),
+  //       bio: profile.bio,
+  //       githubID: profile.githubID,
+  //       youtube: profile.social.youtube,
+  //       instagram: profile.social.instagram,
+  //       twitter: profile.social.twitter,
+  //       linkedin: profile.social.linkedin,
+  //       facebook: profile.social.facebook
+  //     });
+  //   }
+  // }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps && nextProps.profile.profile && prevState.handle === "") {
       const { profile } = nextProps.profile;
-      this.setState({
+      return {
+        ...prevState,
         handle: profile.handle,
         company: profile.company,
         website: profile.website,
@@ -54,18 +75,14 @@ class EditProfile extends Component {
         twitter: profile.social.twitter,
         linkedin: profile.social.linkedin,
         facebook: profile.social.facebook
-      });
+      };
+    } else if (nextProps && nextProps.errors) {
+      return {
+        errors: nextProps.errors
+      };
+    } else {
+      return null;
     }
-  }
-
-  shouldComponentUpdate(props, state) {
-    if (state === this.state) {
-      console.log("false");
-      return false;
-    }
-    console.log("true");
-
-    return true;
   }
 
   onChange = e => {
