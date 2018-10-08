@@ -3,22 +3,23 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import NavBar from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-import Landing from "./components/layout/Landing";
-import Register from "./components/register/auth/Register";
-import Login from "./components/register/auth/Login";
 import "./App.css";
-
-import Dashboard from "./components/dashboard/Dashboard";
+import {
+  NotFound,
+  Landing,
+  Register,
+  Login,
+  Profile,
+  Profiles,
+  EditProfile,
+  CreateProfile,
+  Dashboard,
+  AddEducation,
+  AddExperience,
+  Posts,
+  Post
+} from "./components/loadable/Loadable";
 import PrivateRoute from "./components/common/PrivateRoute";
-import CreateProfile from "./components/create-profile/CreateProfile";
-import EditProfile from "./components/edit-profile/EditProfile";
-import AddEducation from "./components/add-credentials/AddEducation";
-import AddExperience from "./components/add-credentials/AddExperience";
-import Profile from "./components/profile/Profile";
-import Profiles from "./components/profiles/Profiles";
-import NotFound from "./components/not-found/NotFound";
-import Posts from "./components/posts/Posts";
-import Post from "./components/post/Post";
 import AlertContainer from "./components/alert/AlertContainer";
 
 class App extends Component {

@@ -58,6 +58,16 @@ class EditProfile extends Component {
     }
   }
 
+  shouldComponentUpdate(props, state) {
+    if (state === this.state) {
+      console.log("false");
+      return false;
+    }
+    console.log("true");
+
+    return true;
+  }
+
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
