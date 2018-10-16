@@ -24,7 +24,7 @@ function* registerUserWorker(action) {
     yield put({ type: GET_ERRORS, payload: error.response.data });
     yield put({
       type: ADD_ALERT,
-      payload: { text: "Register failed", status: "danger" }
+      payload: { text: "Register failed", status: "error" }
     });
   }
 }
@@ -52,7 +52,7 @@ function* loginUserWorker(action) {
     yield put({ type: GET_ERRORS, payload: error.response.data });
     yield put({
       type: ADD_ALERT,
-      payload: { text: "Login failed", status: "danger" }
+      payload: { text: "Login failed", status: "error" }
     });
   }
 }
@@ -78,7 +78,7 @@ function* logoutUserWorker(action) {
     yield put({ type: GET_ERRORS, payload: error.response.data });
     yield put({
       type: ADD_ALERT,
-      payload: { text: "Login failed", status: "danger" }
+      payload: { text: "Login failed", status: "error" }
     });
   }
 }

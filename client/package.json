@@ -42,5 +42,5 @@
     "eject": "react-scripts eject",
     "serve": "cross-env NODE_ENV=production node ./server/index.js"
   },
-  "proxy": "http://localhost:5001"
+  "proxy": "http://localhost:5000"
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "antd/dist/antd.css";
 
 import NavBar from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -20,7 +21,7 @@ import {
   Post
 } from "./components/loadable/Loadable";
 import PrivateRoute from "./components/common/PrivateRoute";
-import AlertContainer from "./components/alert/AlertContainer";
+import AlertContainer from "./components/alert";
 
 class App extends Component {
   render() {

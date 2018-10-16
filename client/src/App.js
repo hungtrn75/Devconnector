@@ -5,7 +5,8 @@ import NavBar from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
 import Register from "./components/register/auth/Register";
-import Login from "./components/register/auth/Login";
+import Login from "./components/register/auth/LoginAntd";
+import "antd/dist/antd.css";
 import "./App.css";
 
 import Dashboard from "./components/dashboard/Dashboard";

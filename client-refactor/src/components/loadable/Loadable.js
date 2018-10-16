@@ -42,7 +42,7 @@ export const Dashboard = Loadable({
   loading: Loading
 });
 export const AddEducation = Loadable({
-  loader: () => import("../add-credentials/AddEducation"),
+  loader: () => import("../add-credentials/AddEducationAntd"),
   loading: Loading
 });
 export const AddExperience = Loadable({

@@ -1,6 +1,13 @@
 import React, { Component } from "react";
-import styles from "./index.scss";
-import classNames from "classnames";
+import { notification } from "antd";
+
+const openNotificationWithIcon = ({ status, text }) => {
+  notification[status]({
+    message: text,
+    description: "Devconnector notification"
+  });
+  return null;
+};
 
 class Alert extends Component {
   onClick = () => {
@@ -9,42 +16,14 @@ class Alert extends Component {
 
   shouldComponentUpdate(prevProps) {
     if (prevProps.alert.text !== this.props.alert.text) {
-      setTimeout(() => {
-        this.props.removeAlert();
-      }, 2500);
+      !!prevProps.alert.text && openNotificationWithIcon(prevProps.alert);
       return true;
     }
     return false;
   }
 
   render() {
-    const { text, status } = this.props.alert;
-    return (
-      <div className="alert-container">
-        {text && (
-          <div
-            onClick={this.onClick}
-            className={classNames(
-              "alert  animated wobble",
-              styles.alert_box,
-              `alert-${status}`
-            )}
-            role="alert"
-          >
-            <span className="mr-4">{text}</span>
-            {text && (
-              <button
-                type="button"
-                className={classNames("close", styles.icon_close)}
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            )}
-          </div>
-        )}
-      </div>
-    );
+    return <div className="alert-container" />;
   }
 }
 

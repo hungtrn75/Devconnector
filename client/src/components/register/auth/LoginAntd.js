@@ -1,13 +1,13 @@
-import { PropTypes } from "prop-types";
 import React from "react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { connect } from "react-redux";
 import { loginUser } from "../../../actions/index";
+import { stat } from "fs";
 import { Link } from "react-router-dom";
 
 const FormItem = Form.Item;
 
-class C extends React.Component {
+class NormalLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -80,13 +80,7 @@ class C extends React.Component {
   }
 }
 
-const LoginForm = Form.create()(C);
-
-C.propTypes = {
-  loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
-};
+const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
 
 const mapStateToProps = state => ({
   errors: state.errors,
@@ -96,4 +90,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { loginUser }
-)(LoginForm);
+)(WrappedNormalLoginForm);
