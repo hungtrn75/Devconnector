@@ -3,12 +3,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
-
+const cors = require("cors");
 const app = express();
 
 //Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 //DB config
 const db = require("./configs/keys").mongoURI;

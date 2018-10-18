@@ -81,7 +81,7 @@ router.post("/login", (req, res) => {
           const token = user.genarateAuthToken();
           res.send({
             success: true,
-            token: `Bearer ${token}`
+            token: `${token}`
           });
         } else {
           errors.password = "Password incorrect.";

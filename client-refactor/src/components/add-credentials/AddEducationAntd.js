@@ -88,7 +88,7 @@ class AddEducationForm extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <FormItem {...buttonItemLayout}>
-          <Button type="dashed">
+          <Button type="dashed" onClick={() => this.props.history.goBack()}>
             <Icon type="left" />
             Go back
           </Button>
