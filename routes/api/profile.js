@@ -30,16 +30,36 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const errors = {};
-    Profile.findOne({ user: req.user.id })
-      .populate("user", ["name", "avatar"])
-      .then(profile => {
-        if (!profile) {
-          errors.profile = "No profile for this user.";
-          return res.status(404).send(errors);
-        }
-        return res.send(profile);
-      })
-      .catch(err => res.status(404).send(err));
+    const {
+      query: { id, handle }
+    } = req;
+    console.log(id, handle);
+    if (!!id) {
+      Profile.findOne({ user: id })
+        .populate("User", ["name", "avatar"])
+        .then(profile => {
+          if (!profile) {
+            errors.profile = "No profile for this user.";
+            return res.status(404).send(errors);
+          }
+          return res.send(profile);
+        })
+        .catch(err => res.status(404).send(err));
+    } else if (!!handle) {
+      Profile.findOne({ handle: handle })
+        .populate("User", ["name", "avatar"])
+        .then(profile => {
+          if (!profile) {
+            errors.profile = "No profile for this user.";
+            return res.status(404).send(errors);
+          }
+          return res.send(profile);
+        })
+        .catch(err => res.status(404).send(err));
+    } else {
+      errors.profile = "No profile for this user.";
+      return res.status(404).send(errors);
+    }
   }
 );
 
@@ -49,7 +69,7 @@ router.get(
 router.get("/handle/:handle", (req, res) => {
   const errors = {};
   Profile.findOne({ handle: req.params.handle })
-    .populate("user", ["name", "avatar"])
+    .populate("User", ["name", "avatar"])
     .then(profile => {
       if (!profile) {
         errors.profile = "No profile for this user.";
@@ -69,7 +89,7 @@ router.get(
   (req, res) => {
     const errors = {};
     Profile.find()
-      .populate("user", ["name", "avatar"])
+      .populate("User", ["name", "avatar"])
       .then(profile => {
         if (!profile) {
           errors.profile = "No profile to fetch.";
@@ -149,7 +169,9 @@ router.post(
             return res.status(400).json(errors);
           }
 
-          new Profile(profileFields).save().then(profile => res.send(profile));
+          new Profile(profileFields).save().then(profile => {
+            return res.send(profile);
+          });
         });
       }
     });
@@ -264,18 +286,4 @@ router.delete(
   }
 );
 
-//@route  DELETE api/profile
-//@desc   DELETE experience of current user
-//@access Private
-router.delete(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Profile.findOneAndDelete({ user: req.user.id }).then(() => {
-      User.findOneAndDelete({ _id: req.user.id }).then(() =>
-        res.send({ success: "Delete user successful." })
-      );
-    });
-  }
-);
 module.exports = router;

@@ -9,6 +9,7 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+
   email: {
     type: String,
     required: true
@@ -52,4 +53,4 @@ UserSchema.methods.genarateAuthToken = function() {
   return jwt.sign(payload, secretKey, { expiresIn: 3600 }).toString();
 };
 
-module.exports = User = mongoose.model("users", UserSchema);
+module.exports = User = mongoose.model("User", UserSchema);
