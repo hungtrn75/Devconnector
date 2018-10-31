@@ -1,5 +1,5 @@
-import mongoosePaginate from "mongoose-paginate";
-import mongoose from "mongoose";
+const mongoosePaginate = require("mongoose-paginate-v2");
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const zipSchema = new Schema({

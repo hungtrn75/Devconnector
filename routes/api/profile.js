@@ -36,7 +36,7 @@ router.get(
     console.log(id, handle);
     if (!!id) {
       Profile.findOne({ user: id })
-        .populate("User", ["name", "avatar"])
+        .populate("user", ["name", "avatar"])
         .then(profile => {
           if (!profile) {
             errors.profile = "No profile for this user.";
@@ -47,7 +47,7 @@ router.get(
         .catch(err => res.status(404).send(err));
     } else if (!!handle) {
       Profile.findOne({ handle: handle })
-        .populate("User", ["name", "avatar"])
+        .populate("user", ["name", "avatar"])
         .then(profile => {
           if (!profile) {
             errors.profile = "No profile for this user.";
@@ -69,7 +69,7 @@ router.get(
 router.get("/handle/:handle", (req, res) => {
   const errors = {};
   Profile.findOne({ handle: req.params.handle })
-    .populate("User", ["name", "avatar"])
+    .populate("user", ["name", "avatar"])
     .then(profile => {
       if (!profile) {
         errors.profile = "No profile for this user.";
@@ -89,7 +89,7 @@ router.get(
   (req, res) => {
     const errors = {};
     Profile.find()
-      .populate("User", ["name", "avatar"])
+      .populate("user", ["name", "avatar"])
       .then(profile => {
         if (!profile) {
           errors.profile = "No profile to fetch.";
